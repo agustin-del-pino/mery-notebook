@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>$(title)</title>
+    <style>
+        body {
+            height: 100vh;
+            width: auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        body .notebook {
+            height: 100%;
+            width: 100%;
+            overflow-y: auto;
+        }
+
+        body .buttons {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+
+        }
+
+        .button {
+            min-width: fit-content;
+            width: 100%;
+            padding: 10px;
+            cursor: pointer;
+            text-align: center;
+            background: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25));
+        }
+
+        .button:hover {
+            text-decoration: underline;
+        }
+
+        #Hints {
+            cursor: pointer;
+        }
+        
+    </style>
+</head>
+
+<body>
+    <div class="notebook">
+        $(chapterTitle)
+        <div>$(concepts)</div>
+        <div>$(practice)</div>
+        <div>
+            <div id='Hints'>$(hintsTitle)</div>
+            <div id='HintsContent' style="display:none">$(hints)</div>
+        </div>
+    </div>
+    <div class="buttons">
+        <div id="BtnBack" class="button">$(back)</div>
+        <div id="BtnSubmit" class="button">$(submit)</div>
+        <div id="BtnNext" class="button">$(next)</div>
+    </div>
+    <script>
+        const vscode = acquireVsCodeApi();
+        const HintsContent = document.querySelector("#HintsContent");
+        document.querySelector('#Hints')?.addEventListener('click', () => {
+            HintsContent.style.display = HintsContent.style.display === "block" ? "none" : "block";
+        });
+        document.querySelector('#BtnBack').addEventListener("click", () => vscode.postMessage({ command: 'back' }))
+        document.querySelector('#BtnNext').addEventListener("click", () => vscode.postMessage({ command: 'next' }))
+        document.querySelector('#BtnSubmit').addEventListener("click", () => vscode.postMessage({ command: 'submit' }))
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,48 @@
+{
+  "name": "title-note",
+  "title": "Title Note",
+  "author": "me",
+  "version": "1.0.0",
+  "ui": {
+    "template": "@default",
+    "buttons": {
+      "back": "Back",
+      "next": "Next",
+      "submit": "Submit"
+    }
+  },
+  "chapters": [
+    {
+      "isMarkdown": true,
+      "import": "./chapters/introduction.md"
+    },
+    {
+      "isMarkdown": true,
+      "import": "./chapters/creating-py-file.md",
+      "submit": [
+        {
+          "method": "compare",
+          "args": {
+            "expected": [""],
+            "wrongMessage": "Parece que cometiste un error. Revisa el código.",
+            "successMessage": "Bien hecho!."
+          }
+        }
+      ]
+    },
+    {
+      "isMarkdown": true,
+      "import": "./chapters/executing-py-file.md",
+      "submit": [
+        {
+          "method": "compare",
+          "args": {
+            "expected": ["print(\"Hola Mundo\")", "print('Hola Mundo')"],
+            "wrongMessage": "Parece que cometiste un error. Revisa el código.",
+            "successMessage": "Bien hecho!."
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "name": "mery-notebook",
+  "displayName": "mery-notebook",
+  "description": "Create a notebook then learn from it.",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.68.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:mery-notebook.helloWorld",
+    "onCommand:mery.project.create",
+    "onCommand:mery.project.build",
+    "onCommand:mery.notebook.open",
+    "onCommand:mery.notebook.load",
+    "onCommand:mery.notebook.chapters"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "mery.project.create",
+        "title": "Mery: Create Project"
+      },
+      {
+        "command": "mery.project.build",
+        "title": "Mery: Build Notebook"
+      },
+      {
+        "command": "mery.notebook.open",
+        "title": "Mery: Open a loaded Notebook"
+      },
+      {
+        "command": "mery.notebook.load",
+        "title": "Mery: Load and Open a Notebook"
+      },
+      {
+        "command": "mery.notebook.chapters",
+        "title": "Mery: Select a chapter"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./ && npm run postcompile",
+    "postcompile": "cp -r ./src/templates/ ./out/templates/",
+    "watch": "npm run compile && tsc -w -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/glob": "^7.2.0",
+    "@types/mocha": "^9.1.1",
+    "@types/node": "16.x",
+    "@types/vscode": "^1.68.0",
+    "@typescript-eslint/eslint-plugin": "^5.27.0",
+    "@typescript-eslint/parser": "^5.27.0",
+    "@vscode/test-electron": "^2.1.3",
+    "eslint": "^8.16.0",
+    "glob": "^8.0.3",
+    "mocha": "^10.0.0",
+    "typescript": "^4.7.2"
+  },
+  "dependencies": {
+    "@types/markdown-it": "^12.2.3",
+    "markdown-it": "^13.0.1"
+  }
+}
